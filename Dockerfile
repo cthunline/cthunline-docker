@@ -36,7 +36,7 @@ COPY --from=builder /api/package.json ./package.json
 # copy prisma data
 COPY --from=builder /api/src/prisma ./prisma
 # install prod dependencies
-RUN npm i --only=prod
+RUN npm i --omit=dev
 # generate prisma client
 RUN npx prisma generate --schema prisma/schema.prisma
 
