@@ -33,12 +33,10 @@ WORKDIR /app
 # copy api build and dependencies
 COPY --from=builder /api/build .
 COPY --from=builder /api/package.json ./package.json
-# copy prisma data
-COPY --from=builder /api/src/prisma ./prisma
+# copy drizzle migrations
+COPY --from=builder /api/src/drizzle/migrations ./drizzle/migrations
 # install prod dependencies
 RUN npm i --omit=dev
-# generate prisma client
-RUN npx prisma generate --schema prisma/schema.prisma
 
 # create logs and assets directories
 RUN mkdir -p /data/logs
