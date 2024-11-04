@@ -1,6 +1,6 @@
 ########################################### clone repositories + run builds
 
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 # install git
 RUN apk add --update git
@@ -25,7 +25,7 @@ RUN npm run build
 
 ########################################### final image with api + web client
 
-FROM node:20-alpine
+FROM node:22-alpine
 
 # work dir
 WORKDIR /app
